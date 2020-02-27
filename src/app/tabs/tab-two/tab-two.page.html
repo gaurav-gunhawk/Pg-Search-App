@@ -1,0 +1,194 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="menu"></ion-icon>
+      </ion-button>
+  </ion-buttons>
+  <ion-title>Search</ion-title>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content>
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Search Bar and Search Button <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="7">
+        <ion-searchbar showCancelButton="never" #searchcompany ></ion-searchbar>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button class="search-Button" (click)= "onData(searchcompany)">Search</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Main Title Card <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
+  <ion-card class="main-title-card" *ngIf="showDataDetail">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-label class="main-title-company-name">{{companyDetail.CompanyNameOriginal}}</ion-label>
+        </ion-row>
+        
+        <ion-row>
+          <ion-label class="main-title-company-address">{{companyAddress(companyDetail.RegAddress[0])}}</ion-label>
+        </ion-row>
+
+        <ion-row class="main-title-for-margin-1">
+          <ion-col>
+            <ion-label class="main-title-company-number">Company Number</ion-label>
+            <ion-icon name="information-circle" class="main-title-company-icon"></ion-icon>
+            <ion-label class="main-title-company-number-answer">{{companyDetail.CompanyNumber}}</ion-label>
+          </ion-col>
+          
+          <ion-col>
+            <ion-label class="main-title-information-date">Incorporation Date</ion-label>
+            <ion-icon name="calendar" class="main-title-information-icon"></ion-icon>
+            <ion-label class="main-title-incorporation-date-answer">{{companyDetail.IncorporationDate}}</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="main-title-for-margin-2">          
+          <ion-col>
+            <ion-label class="main-title-age">Age(Yrs)</ion-label>
+            <ion-label class="main-title-age-answer"></ion-label>
+            <ion-icon name="calendar" class="main-title-information-icon"></ion-icon>
+
+          </ion-col>
+          
+          <ion-col>
+            <ion-label class="main-title-status">Status</ion-label>
+            <ion-icon name="checkmark-circle" class="main-title-status-icon"></ion-icon>
+            <ion-label class="main-title-status-answer">{{companyDetail.CompanyStatus}}</ion-label>
+           
+          </ion-col>
+        </ion-row>
+        <ion-button icon-start color="" class="main-title-download-button">Download
+          <ion-icon slot="start" name="Download"></ion-icon>
+        </ion-button>
+
+        <ion-row>
+          <ion-buttons>
+          </ion-buttons>
+        </ion-row>
+       
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Details Card <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
+  <ion-card style="border-radius: 25px;"  *ngIf="showDataDetail" class="detail-card">
+    <ion-card-header class="detail-header">
+      <ion-buttons (click)="onShowHide()">
+        <ion-card-title class="detail-card-title">Details</ion-card-title>   
+                       
+        </ion-buttons>
+    </ion-card-header>
+
+
+    <ion-card-content *ngIf="chooseTypeClicked">
+
+     <ion-grid>
+       <ion-row>
+        <ion-col>
+
+        <ion-label class="detail-label">Company SIC Code :</ion-label> <br>
+        <ion-label class="answer-label">{{companyDetail.SICCode_4.SicText_1}}</ion-label> <br>
+      
+        <ion-label></ion-label> <br>
+
+        <ion-label class="detail-label">Company Category :</ion-label> <br>
+        <ion-label class="answer-label">{{companyDetail.CompanyCategory}} </ion-label> <br>  
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="detail-label">Accounts</ion-label><br>
+
+        <ion-label></ion-label> <br>
+        
+        <ion-label class="detail-sub-label">Account Ref Day :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.Accounts.AccountRefDay}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="account-ref-month" class="detail-sub-label"> Account Ref Month :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.Accounts.AccountRefMonth}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="next-due-date-accounts" class="detail-sub-label">Next Due Date :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.Accounts.NextDueDate}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="last-made-update-accounts" class="detail-sub-label">Last Made Up Date :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.Accounts.LastMadeUpDate}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="account-category" class="detail-sub-label">Account Category :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.Accounts.AccountCategory}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="confiramtion-statement" class="detail-label">Confirmation Statement </ion-label><br>
+        
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="next-due-date-confirmation-statement" class="detail-sub-label">Next Due Date :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.ConfStmtNextDueDate}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="last-made-update-confirmation-statement" class="detail-sub-label">Last Made Update :</ion-label><br>
+        <ion-label class="answer-sub-label">{{companyDetail.ConfStmtLastMadeUpDate}}</ion-label> <br>
+
+        <ion-label></ion-label> <br>
+
+        <ion-label class="detail-label">Social Links</ion-label><br>
+        <ion-label></ion-label> <br>
+
+        <ion-label></ion-label> <br> 
+      </ion-col>
+
+      <ion-col>
+        <!-- <agm-map [latitude]="lat" [longitude]="lng">
+           <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker> 
+        </agm-map> -->
+      </ion-col>
+        
+      </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Directors/PSC  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
+<ion-card style="border-radius: 25px;"  *ngIf="showDataDetail" class="director-card">
+  <ion-card-header class="director-header">
+    <ion-buttons >
+      <ion-card-title class="director-card-title">Directors/PSC</ion-card-title>        
+      </ion-buttons>
+  </ion-card-header>
+
+  <!-- <ion-card-content>
+
+    <ngx-datatable class="director-table" [rows]="rows" 
+     [columnModel]="'force'" [sortType]="'multi'" [reordable]="false">
+      </ngx-datatable-column name="Name"></ngx-datatable-column>
+      </ngx-datatable-column name="Gender"></ngx-datatable-column>
+      </ngx-datatable-column name="Age"></ngx-datatable-column>
+    </ngx-datatable>
+
+  </ion-card-content> -->
+
+</ion-card>
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
+
+
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Create an Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form >
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-list>
+    
+
+            <ion-item>
+              <ion-label position="floating">E-Mail</ion-label>
+              <ion-input type="text" [(ngModel)]="dataSignup.email" name="email" required email #emailmodel="ngModel"></ion-input>
+            </ion-item>  
+            
+            <ion-item 
+              *ngIf="!emailmodel.valid && emailmodel.touched"
+              lines="none">
+              <ion-label> Should be a valid Email Id</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-label margin position="floating">Password</ion-label>
+              <ion-input type="password" [(ngModel)]="dataSignup.password" name="password" required minLength="6" #passwordmodel="ngModel"></ion-input>
+            </ion-item>
+
+            <ion-item 
+              *ngIf="!passwordmodel.valid && passwordmodel.touched"
+              lines="none">
+              <ion-label> Should enter a Good Password</ion-label>
+            </ion-item>
+       
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+
+          <ion-button color="primary" expand="block" [disabled]="!passwordmodel.valid && !emailmodel.valid"  (click)="onSignUp(dataSignup)"> 
+            SignUp
+          </ion-button>
+
+          <ion-button color="primary" expand="block" [routerLink]="['/','auth']"> 
+            LogIn
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+
+ 
+
+</ion-content>
